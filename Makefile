@@ -10,3 +10,6 @@ build:
 # Example: make build-jenkins JENKINS_VERSION=2.289.1-jdk11
 build-jenkins:
 	@$(MAKE) build JENKINS_VERSION=$(JENKINS_VERSION)
+
+run:
+	docker run --rm --name kn-jenkins -p 8080:8080 $(IMAGE_NAME):$(JENKINS_VERSION)

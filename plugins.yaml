@@ -1,5 +1,22 @@
 plugins:
-  - groupId: io.jenkins.blueocean
-    artifactId: blueocean
-    source:
-      version: 1.27.11
+  - artifactId: blueocean
+  - artifactId: blueocean-config
+  - artifactId: blueocean-dashboard
+  - artifactId: blueocean-git-pipeline
+  - artifactId: blueocean-events
+  - artifactId: blueocean-executor-info
+  - artifactId: blueocean-bitbucket-pipeline
+  - artifactId: blueocean-github-pipeline
+  - artifactId: blueocean-i18n
+  - artifactId: blueocean-jira
+  - artifactId: blueocean-commons
+  - artifactId: blueocean-personalization
+  - artifactId: blueocean-core-js
+  - artifactId: blueocean-jwt
+  - artifactId: blueocean-pipeline-editor
+  - artifactId: blueocean-pipeline-scm-api
+  - artifactId: blueocean-rest-impl
+  - artifactId: blueocean-web
+  - artifactId: blueocean-pipeline-api-impl
+  - artifactId: blueocean-rest
+  - artifactId: jenkins-design-language

@@ -11,4 +11,4 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
 RUN apt-get update && apt-get install -y docker-ce-cli
 USER jenkins
 COPY plugins.yaml . 
-RUN jenkins-plugin-cli --plugin-file "plugins.yaml"
+RUN jenkins-plugin-cli --plugin-file "plugins.yaml" -w "/usr/share/jenkins/jenkins.war" --list #--plugin-download-directory /var/jenkins_home/plugins/
