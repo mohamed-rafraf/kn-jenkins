@@ -26,3 +26,19 @@ docker-run:
 		-e ADMIN_USER=$(ADMIN_USER) \
 		-e JENKINS_PASSWORD=$(ADMIN_PASS) \
 		-p 8080:8080 $(IMAGE_NAME):$(JENKINS_VERSION)
+
+kube-run:
+	kubectl apply -f kube/openldap.yaml 
+	make configmap
+	kubectl apply -f kube/jenkins.yaml
+
+kube-delete:
+	kubectl delete -f kube/openldap.yaml
+	kubectl delete -f kube/jenkins.yaml
+	kubectl delete cm -n kubesphere-system devops-jenkins
+	
+
+configmap:
+	kubectl create configmap devops-jenkins \
+	-n kubesphere-system \
+	--from-file=config 
