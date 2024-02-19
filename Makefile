@@ -29,13 +29,15 @@ docker-run:
 
 kube-run:
 	kubectl apply -f kube/openldap.yaml 
+	sleep 100
 	make configmap
 	kubectl apply -f kube/jenkins.yaml
 
 kube-delete:
 	kubectl delete -f kube/openldap.yaml
-	kubectl delete -f kube/jenkins.yaml
 	kubectl delete cm -n kubesphere-system devops-jenkins
+	kubectl delete -f kube/jenkins.yaml
+
 	
 
 configmap:
