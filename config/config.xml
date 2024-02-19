@@ -16,7 +16,7 @@
   <jdks/>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
-  <!-- <clouds>
+  <clouds>
     <org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud plugin="kubernetes">
       <name>kubernetes</name>
       <templates>
@@ -72,7 +72,7 @@
       <readTimeout>0</readTimeout>
       <podRetention class="org.csanchez.jenkins.plugins.kubernetes.pod.retention.Never"/>
     </org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud>
-  </clouds> -->
+  </clouds>
   <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
