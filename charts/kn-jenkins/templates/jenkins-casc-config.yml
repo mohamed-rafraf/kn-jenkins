@@ -8,6 +8,12 @@ metadata:
 {{- end }}
 data:
   jenkins.yaml: |
+    credentials:
+      system:
+        domainCredentials:
+          - credentials:
+              - fileSystemServiceAccountCredential:
+                  id: "k8s-service-account"
     jenkins:
       mode: EXCLUSIVE
       numExecutors: 0
@@ -410,6 +416,8 @@ data:
             server: "ldap://{{.Values.casc.securityRealm.ldap.host }}"
           disableMailAddressResolver: false
           disableRolePrefixing: true
+          groupIdStrategy: "caseInsensitive"
+          userIdStrategy: "caseInsensitive"
     {{ else }}
       authorizationStrategy: loggedInUsersCanDoAnything
     {{- end }}
