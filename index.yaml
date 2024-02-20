@@ -1,0 +1,27 @@
+apiVersion: v1
+entries:
+  kn-jenkins:
+  - apiVersion: v2
+    appVersion: v3.4.1-2.426.3
+    created: "2024-02-20T21:09:04.418363526Z"
+    description: An open-source continuous integration server compatible with multiple
+      Source Control Management (SCM) tools, such as CVS, Subversion, and Git. It
+      is capable of executing projects based on Apache Ant and Apache Maven, in addition
+      to running custom scripts.
+    digest: f97f12609b1ec1c1895488068009b90dc2ebc6cad6104c719ae169e75363998c
+    home: https://jenkins.io/
+    icon: https://wiki.jenkins.io/JENKINS/attachments/2916393/57409618.png
+    maintainers:
+    - email: mohamed.rafraf@kubermatic.com
+      name: raf²
+    - email: mohamedrafraf@insat.u-carthage.tn
+      name: mohamed-rafraf
+    name: kn-jenkins
+    sources:
+    - https://github.com/jenkinsci/jenkins
+    - https://github.com/jenkinsci/docker-agent/
+    type: application
+    urls:
+    - https://github.com/mohamed-rafraf/kn-jenkins/releases/download/kn-jenkins-0.0.1/kn-jenkins-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-02-20T21:09:04.418374487Z"
