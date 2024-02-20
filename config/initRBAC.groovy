@@ -56,11 +56,11 @@ adminPermissions.add(Permission.fromId("hudson.model.Run.Update"));
 adminPermissions.add(Permission.fromId("hudson.model.Run.Replay"));
 
 // Create and add the admin role
-Role adminRole = new Role("admin", adminPermissions)
+Role adminRole = new Role(globalRoleAdmin, adminPermissions)
 rbas.getRoleMap(RoleType.Global).addRole(adminRole)
 
 // Assign admin role to the specified user
-rbas.getRoleMap(RoleType.Global).assignRole(adminRole, new PermissionEntry(AuthorizationType.USER, "admin"))
+rbas.getRoleMap(RoleType.Global).assignRole(adminRole, new PermissionEntry(AuthorizationType.USER, ldapUserNameAdmin))
 
 // Define permissions for read access role
 Set<Permission> readPermissions = new HashSet<>()
