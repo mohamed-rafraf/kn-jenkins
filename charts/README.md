@@ -1,3 +1,3 @@
 # Jenkins Chart
 
-This is KN-JENKINS Chart
+This is KN-JENKINS Chart.
