@@ -7,6 +7,8 @@ icon: https://wiki.jenkins.io/JENKINS/attachments/2916393/57409618.png
 maintainers:
 - email: mohamed.rafraf@kubermatic.com
   name: raf²
+- email: mohamedrafraf@insat.u-carthage.tn
+  name: mohamed-rafraf
 name: kn-jenkins
 sources:
 - https://github.com/jenkinsci/jenkins
