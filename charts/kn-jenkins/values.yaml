@@ -158,28 +158,10 @@ Master:
       def globalRoleAdmin = "admin"
       def ldapUserNameAdmin = "admin"
 
+
+      // Initialize Jenkins and RoleBasedAuthorizationStrategy
       def jenkinsInstance = Jenkins.getInstance()
-      def currentAuthenticationStrategy = Hudson.instance.getAuthorizationStrategy()
-      if (currentAuthenticationStrategy instanceof RoleBasedAuthorizationStrategy) {
-        println "Role based authorisation already enabled."
-        println "Exiting script..."
-        return
-      } else {
-          println "Enabling role based authorisation strategy..."
-      }
-
-      // Set new authentication strategy
-      RoleBasedAuthorizationStrategy roleBasedAuthenticationStrategy = new RoleBasedAuthorizationStrategy()
-      jenkinsInstance.setAuthorizationStrategy(roleBasedAuthenticationStrategy)
-
-      Constructor[] constrs = Role.class.getConstructors();
-      for (Constructor<?> c : constrs) {
-          c.setAccessible(true);
-      }
-
-      // Make the method assignRole accessible
-      Method assignRoleMethod = RoleBasedAuthorizationStrategy.class.getDeclaredMethod("assignRole", RoleType.class, Role.class, String.class);
-      assignRoleMethod.setAccessible(true);
+      RoleBasedAuthorizationStrategy rbas = new RoleBasedAuthorizationStrategy()
 
       // Create admin set of permissions
       Set<Permission> adminPermissions = new HashSet<Permission>();
@@ -214,29 +196,30 @@ Master:
       adminPermissions.add(Permission.fromId("hudson.model.Run.Update"));
       adminPermissions.add(Permission.fromId("hudson.model.Run.Replay"));
 
-      // Create the admin Role
-      Role adminRole = new Role(globalRoleAdmin, adminPermissions);
-      roleBasedAuthenticationStrategy.addRole(RoleType.Global, adminRole);
+      // Create and add the admin role
+      Role adminRole = new Role(globalRoleAdmin, adminPermissions)
+      rbas.getRoleMap(RoleType.Global).addRole(adminRole)
 
-      // Assign the role
-      roleBasedAuthenticationStrategy.assignRole(RoleType.Global, adminRole, ldapUserNameAdmin);
-      println "Admin role created...OK"
+      // Assign admin role to the specified user
+      rbas.getRoleMap(RoleType.Global).assignRole(adminRole, new PermissionEntry(AuthorizationType.USER, ldapUserNameAdmin))
 
-      /// Read access for authenticated users
-      // Create permissions
-      Set<Permission> authenticatedPermissions = new HashSet<Permission>();
-      authenticatedPermissions.add(Permission.fromId("hudson.model.Hudson.Read"));
+      // Define permissions for read access role
+      Set<Permission> readPermissions = new HashSet<>()
+      readPermissions.add(Permission.fromId("hudson.model.Hudson.Read"))
+      // Add more permissions as needed...
 
-      Role authenticatedRole = new Role(globalRoleRead, authenticatedPermissions);
-      roleBasedAuthenticationStrategy.addRole(RoleType.Global, authenticatedRole);
+      // Create and add the read access role
+      Role readRole = new Role(globalRoleRead, readPermissions)
+      rbas.getRoleMap(RoleType.Global).addRole(readRole)
 
-      // Assign the role
-      roleBasedAuthenticationStrategy.assignRole(RoleType.Global, authenticatedRole, 'authenticated');
-      println "Read role created...OK"
+      // Optionally, assign the read role to a group or another user
+      // rbas.getRoleMap(RoleType.Global).assignRole(readRole, new PermissionEntry(AuthorizationType.USER, "someUserOrGroup"))
 
-      // Save the state
-      println "Saving changes."
+      // Set the new authorization strategy
+      jenkinsInstance.setAuthorizationStrategy(rbas)
       jenkinsInstance.save()
+
+      println "Roles and permissions have been configured and saved."
     Users: |-
       import jenkins.model.*
       import hudson.security.*
@@ -253,6 +236,11 @@ Master:
         instance.setSecurityRealm(hudsonRealm)
         instance.save()
       }
+    ReloadConfiguration: |-
+      import io.jenkins.plugins.casc.ConfigurationAsCode
+
+      ConfigurationAsCode.get().configure()
+      println "Configuration As Code Is reloaded"
     Sonarqube: |-
       import hudson.model.*
       import jenkins.model.*
