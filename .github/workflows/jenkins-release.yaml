@@ -1,4 +1,4 @@
-name: Jenkins
+name: Jenkins Release
 
 on: 
   workflow_dispatch: 
@@ -11,7 +11,7 @@ env:
   IMAGE_TAG: v0.0.0-0.0.0
 
 jobs:
-  release:
+  jenkins-release:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
