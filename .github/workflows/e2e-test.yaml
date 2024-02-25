@@ -25,6 +25,7 @@ jobs:
           yq eval 'del(.dependencies[] | select(.name == "jenkins").version)' -i ks-devops/Chart.yaml
           rm -rf ks-devops/charts/jenkins
           mv charts/kn-jenkins ks-devops/charts/jenkins
+          sed -i 's/tag: master/tag: latest/g' ks-devops/values.yaml
           cat ks-devops/Chart.yaml
           echo "*************************************"
           tree ks-devops
