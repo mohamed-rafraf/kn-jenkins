@@ -1,0 +1,33 @@
+on: 
+  push:
+    branches:
+      - 'dev'
+
+
+#https://github.com/kubesphere-sigs/ks-devops-helm-chart/releases/download/ks-devops-0.3.2/ks-devops-0.3.2.tgz
+
+jobs:
+  chart-release:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+
+      - name: Download ks-devops chart
+        run: |
+          wget https://github.com/kubesphere-sigs/ks-devops-helm-chart/releases/download/ks-devops-0.3.2/ks-devops-0.3.2.tgz
+          tar xzf "ks-devops-0.3.2.tgz"
+          yq eval 'del(.dependencies[] | select(.name == "jenkins").version)' -i ks-devops/Chart.yaml
+          rm -rf ks-devops/jenkins
+          mv charts/kn-jenkins ks-devops/jenkins
+          
+
+
+
+
+      
