@@ -37,7 +37,7 @@ jobs:
 
       - name: Create KinD Cluster
         run: |
-          kind create cluster --config=.github/workflows/kind/cluster.yaml
+          kind create cluster --config=.github/workflows/cluster.yaml
       
       - name: Deploy KubeSphere to Kind
         run: |
