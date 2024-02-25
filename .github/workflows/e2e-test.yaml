@@ -57,6 +57,7 @@ jobs:
             --create-namespace \
             --set image.pullPolicy=Always \
             --set jenkins.ksAuth.enabled=true
-
+          sleep 120
+          kubectl get pods -n kubesphere-devops-system
           kubectl wait --for=condition=ready pod --all -n kubesphere-devops-system --timeout=5m
           kubectl get pods -n kubesphere-devops-system
