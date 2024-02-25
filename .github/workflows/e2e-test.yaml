@@ -52,11 +52,11 @@ jobs:
 
       - name: Install DevOps 
         run: |
-            helm install ks-devops ks-devops -n kubesphere-devops-system \
-              --set serviceAccount.create=true \
-              --create-namespace \
-          	  --set image.pullPolicy=Always \
-          	  --set jenkins.ksAuth.enabled=true
+          helm install ks-devops ks-devops -n kubesphere-devops-system \
+            --set serviceAccount.create=true \
+            --create-namespace \
+            --set image.pullPolicy=Always \
+            --set jenkins.ksAuth.enabled=true
 
-            kubectl wait --for=condition=ready pod --all -n kubesphere-devops-system --timeout=180s
-            kubectl get pods -n kubesphere-devops-system
+          kubectl wait --for=condition=ready pod --all -n kubesphere-devops-system --timeout=180s
+          kubectl get pods -n kubesphere-devops-system
