@@ -1,4 +1,4 @@
-ARG JENKINS_VERSION=2.426.3-jdk17
+ARG JENKINS_VERSION=2.440.1-lts-jdk17
 FROM jenkins/jenkins:${JENKINS_VERSION}
 USER root
 RUN apt-get update && apt-get install -y lsb-release
