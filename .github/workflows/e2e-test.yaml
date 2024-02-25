@@ -18,19 +18,36 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
-      - name: Download ks-devops chart
+      - name: Prepare ks-devops chart
         run: |
           wget https://github.com/kubesphere-sigs/ks-devops-helm-chart/releases/download/ks-devops-0.3.2/ks-devops-0.3.2.tgz
           tar xzf "ks-devops-0.3.2.tgz"
           yq eval 'del(.dependencies[] | select(.name == "jenkins").version)' -i ks-devops/Chart.yaml
-          rm -rf ks-devops/jenkins
-          mv charts/kn-jenkins ks-devops/jenkins
+          rm -rf ks-devops/charts/jenkins
+          mv charts/kn-jenkins ks-devops/charts/jenkins
           cat ks-devops/Chart.yaml
           echo "*************************************"
           tree ks-devops
 
+      - name: Install KinD
+        run: |
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.22.0/kind-linux-amd64
+          chmod +x ./kind
+          mv ./kind /usr/local/bin/kind
 
-
-
+      - name: Create KinD Cluster
+        run: |
+          kind create cluster --config=.github/workflows/kind/cluster.yaml
+      
+      - name: Deploy KubeSphere to Kind
+        run: |
+          wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/check_cluster_status.sh
+          wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/deploy/kubesphere-installer.yaml
+          wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/deploy/cluster-configuration.yaml
+          sed -i 's/imagePullPolicy: .*/imagePullPolicy: IfNotPresent/g' kubesphere-installer.yaml
+          sed -i 's/jenkinsMemoryReq: .*/jenkinsMemoryReq: 200Mi/g' cluster-configuration.yaml
+          kubectl apply -f kubesphere-installer.yaml
+          kubectl apply -f cluster-configuration.yaml
+          bash scripts/check_cluster_status.sh
 
       
