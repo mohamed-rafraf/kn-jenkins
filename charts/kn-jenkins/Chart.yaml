@@ -9,7 +9,7 @@ maintainers:
   name: raf²
 - email: mohamedrafraf@insat.u-carthage.tn
   name: mohamed-rafraf
-name: kn-jenkins
+name: jenkins
 sources:
 - https://github.com/jenkinsci/jenkins
 - https://github.com/jenkinsci/docker-agent/
