@@ -7,7 +7,7 @@ on:
 #https://github.com/kubesphere-sigs/ks-devops-helm-chart/releases/download/ks-devops-0.3.2/ks-devops-0.3.2.tgz
 
 jobs:
-  chart-release:
+  jenkins-e2e:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -25,7 +25,10 @@ jobs:
           yq eval 'del(.dependencies[] | select(.name == "jenkins").version)' -i ks-devops/Chart.yaml
           rm -rf ks-devops/jenkins
           mv charts/kn-jenkins ks-devops/jenkins
-          
+          cat ks-devops/Chart
+          echo "*************************************"
+          tree ks-devops
+
 
 
 
