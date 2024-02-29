@@ -57,7 +57,7 @@ jobs:
       - name: Install ArgoCD 
         run: |
           echo "Installing ArgoCD ..."
-          curl -L https://github.com/kubesphere/ks-installer/raw/v3.4.0/roles/ks-devops/files/ks-devops/charts/argo-cd-4.4.0.tgz
+          wget https://github.com/kubesphere/ks-installer/raw/v3.4.0/roles/ks-devops/files/ks-devops/charts/argo-cd-4.4.0.tgz
           helm install ks-devops argo-cd-4.4.0.tgz -n argocd --create-namespace
           kubectl wait --for=condition=ready pod --all -n argocd --timeout=5m
 
