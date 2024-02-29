@@ -34,11 +34,11 @@ jobs:
         run: |
           curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.22.0/kind-linux-amd64
           chmod +x ./kind
-          mv ./kind /usr/local/bin/kind
+          #mv ./kind /usr/local/bin/kind
 
       - name: Create KinD Cluster
         run: |
-          kind create cluster --config=.github/kind/cluster.yaml
+          ./kind create cluster --config=.github/kind/cluster.yaml
 
       - name: Install Kubesphere CLI 
         run: |
