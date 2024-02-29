@@ -360,7 +360,7 @@ Master:
 Agent:
   Enabled: true
   Image: jenkins/inbound-agent
-  ImageTag: 4.10-2
+  ImageTag: latest
   CustomJenkinsLabels: []
   Component: "jenkins-inbound-agent"
   Privileged: false

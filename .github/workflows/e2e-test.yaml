@@ -39,17 +39,27 @@ jobs:
       - name: Create KinD Cluster
         run: |
           kind create cluster --config=.github/kind/cluster.yaml
-      
-      - name: Deploy KubeSphere to Kind
+
+      - name: Install Kubesphere CLI 
         run: |
-          wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/check_cluster_status.sh
-          wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/deploy/kubesphere-installer.yaml
-          wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/deploy/cluster-configuration.yaml
-          sed -i 's/imagePullPolicy: .*/imagePullPolicy: IfNotPresent/g' kubesphere-installer.yaml
-          sed -i 's/jenkinsMemoryReq: .*/jenkinsMemoryReq: 200Mi/g' cluster-configuration.yaml
-          kubectl apply -f kubesphere-installer.yaml
-          kubectl apply -f cluster-configuration.yaml
-          bash check_cluster_status.sh
+          echo "Installing Kubesphere CLI ..."
+          curl -L https://github.com/linuxsuren/http-downloader/releases/latest/download/hd-linux-amd64.tar.gz | tar xzv
+          sudo mv hd /usr/bin/hd
+          hd install kubesphere-sigs/ks
+          echo "Kubesphere CLI is installed"
+
+      - name: Installing Prerequisite CRDs
+        run: |
+          kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspacetemplates.yaml
+          kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspaces.yaml
+          kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/cluster.kubesphere.io_clusters.yaml
+
+      - name: Install ArgoCD 
+        run: |
+          echo "Installing ArgoCD ..."
+          curl -L https://github.com/kubesphere/ks-installer/raw/v3.4.0/roles/ks-devops/files/ks-devops/charts/argo-cd-4.4.0.tgz
+          helm install ks-devops argo-cd-4.4.0.tgz -n argocd --create-namespace
+          kubectl wait --for=condition=ready pod --all -n argocd --timeout=5m
 
       - name: Install DevOps 
         run: |
@@ -58,7 +68,32 @@ jobs:
             --create-namespace \
             --set image.pullPolicy=Always \
             --set jenkins.ksAuth.enabled=true
-          sleep 120
+          bash scripts/check_status.sh
           kubectl get pods -n kubesphere-devops-system
-          kubectl wait --for=condition=ready pod --all -n kubesphere-devops-system --timeout=5m
-          kubectl get pods -n kubesphere-devops-system
+
+      - name: Create and Test a Pipeline 
+        run: |
+          echo "Creating a simple Pipeline"
+          ks pip create --ws simple --project test --template simple --name simple
+          echo "Pipeline is Created"
+          echo "**********************************************************************"
+          NAMESPACE=$(kubectl get pipelines -A | tail -n 1 | awk '{ print $1}')
+          kubectl get pipeline -n $NAMESPACE simple -o=jsonpath='{.spec.pipeline.jenkinsfile}'
+          echo "**********************************************************************"
+          echo simple | ks pip run --project test -p simple
+          echo "Pipeline is Running Now !!"
+          PIPELINERUN=$(kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE | tail -n 1 | awk '{print $1}')
+          kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=2m
+          echo "WELL DONE"
+
+
+      # - name: Deploy KubeSphere to Kind
+      #   run: |
+      #     wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/check_cluster_status.sh
+      #     wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/deploy/kubesphere-installer.yaml
+      #     wget https://raw.githubusercontent.com/kubesphere/ks-installer/master/deploy/cluster-configuration.yaml
+      #     sed -i 's/imagePullPolicy: .*/imagePullPolicy: IfNotPresent/g' kubesphere-installer.yaml
+      #     sed -i 's/jenkinsMemoryReq: .*/jenkinsMemoryReq: 200Mi/g' cluster-configuration.yaml
+      #     kubectl apply -f kubesphere-installer.yaml
+      #     kubectl apply -f cluster-configuration.yaml
+      #     bash check_cluster_status.sh
