@@ -10,7 +10,7 @@ function check_devops_ok(){
     echo "waiting for DevOps Controller ready"
     while IFS= read -r line; do
         echo "$line"
-        if [[ $line =~ "synced key:kubesphere-devops-system/jenkins-casc-config" ]]
+        if [[ $line =~ "synced key: kubesphere-devops-system/jenkins-casc-config" ]]
             then
                 return
         fi
