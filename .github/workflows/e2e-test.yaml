@@ -86,7 +86,8 @@ jobs:
           kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE
           echo "**********************************************************************"
           PIPELINERUN=$(kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE | tail -n 1 | awk '{print $1}')
-          kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=2m \
+          echo $PIPELINERUN
+          kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=5m \
             || (kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE && echo "SAD AND BAD :("
           kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE
           echo "WELL DONE"
