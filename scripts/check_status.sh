@@ -6,12 +6,11 @@ set -o pipefail
 
 function check_devops_ok(){
     echo "waiting for ks-devops system"
-    kubectl -n kubesphere-devops-system wait --timeout=180s --for=condition=Available pod --all
-    kubectl wait --for=condition=ready pod --all -n kubesphere-devops-system --timeout=2m
+    kubectl wait --for=condition=ready pod --all -n kubesphere-devops-system --timeout=2m || kubectl get pods -n kubesphere-devops-system
     echo "waiting for DevOps Controller ready"
     while IFS= read -r line; do
         echo "$line"
-        if [[ $line =~ "syncing key:kubesphere-devops-system/jenkins-casc-config" ]]
+        if [[ $line =~ "synced key:kubesphere-devops-system/jenkins-casc-config" ]]
             then
                 return
         fi
