@@ -51,7 +51,7 @@ jobs:
       - name: Installing Prerequisite CRDs
         run: |
           kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspacetemplates.yaml
-        #  kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspaces.yaml
+          # kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspaces.yaml
           kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/cluster.kubesphere.io_clusters.yaml
 
       - name: Install ArgoCD 
