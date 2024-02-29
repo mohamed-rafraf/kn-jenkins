@@ -83,7 +83,8 @@ jobs:
           echo simple | ks pip run --project test -p simple
           echo "Pipeline is Running Now !!"
           PIPELINERUN=$(kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE | tail -n 1 | awk '{print $1}')
-          kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=2m
+          kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=2m \
+            || (kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE && "SAD AND BAD :(" && exit 1)
           echo "WELL DONE"
 
 
