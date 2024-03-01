@@ -81,20 +81,20 @@ jobs:
       - name: Create and Test a Pipeline 
         run: |
           echo "Creating a simple Pipeline"
-          sleep 60
           ks pip create --ws simple --project test --template simple --name simple
           echo "Pipeline is Created"
           echo "**********************************************************************"
           NAMESPACE=$(kubectl get pipelines -A | tail -n 1 | awk '{ print $1}')
           kubectl get pipeline -n $NAMESPACE simple -o=jsonpath='{.spec.pipeline.jenkinsfile}'
           echo "**********************************************************************"
-          expect -d scripts/pip.sh
+          kubectl get pipeline -A
+          echo "***********************************************************************"
+          ./scripts/pip.sh
           echo "Pipeline is Running Now !!"
           echo "**********************************************************************"
           kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE
           echo "**********************************************************************"
           PIPELINERUN=$(kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE | tail -n 1 | awk '{print $1}')
-          echo $PIPELINERUN
           kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=5m || kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE
           echo "WELL DONE"
 
