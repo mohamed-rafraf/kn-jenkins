@@ -29,7 +29,10 @@ jobs:
           cat ks-devops/Chart.yaml
           echo "*************************************"
           tree ks-devops
-
+      
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        
       - name: Install KinD
         run: |
           curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.22.0/kind-linux-amd64

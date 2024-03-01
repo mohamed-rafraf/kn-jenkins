@@ -1,0 +1,14 @@
+apiVersion: v2
+appVersion: v3.5.0
+dependencies:
+  - condition: jenkins.enabled
+    name: jenkins
+    repository: ""
+  - condition: s2i.enabled
+    name: s2i
+    repository: ""
+    version: 1.16.3
+description: A Helm chart for KubeSphere DevOps
+name: ks-devops
+type: application
+version: 0.3.2
