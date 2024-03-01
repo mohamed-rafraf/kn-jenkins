@@ -54,10 +54,11 @@ jobs:
           hd install kubesphere-sigs/ks
           echo "Kubesphere CLI is installed"
 
-      - name: Installing Prerequisite CRDs
+      - name: Installing Prerequisite CRDs and other things 
         run: |
+          apt update -y && apt install -y expect
           kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspacetemplates.yaml
-          # kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspaces.yaml
+          kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/tenant.kubesphere.io_workspaces.yaml
           kubectl apply -f https://github.com/kubesphere/kubesphere/raw/v3.4.0/config/ks-core/crds/cluster.kubesphere.io_clusters.yaml
 
       - name: Install ArgoCD 
@@ -87,7 +88,7 @@ jobs:
           NAMESPACE=$(kubectl get pipelines -A | tail -n 1 | awk '{ print $1}')
           kubectl get pipeline -n $NAMESPACE simple -o=jsonpath='{.spec.pipeline.jenkinsfile}'
           echo "**********************************************************************"
-          echo simple | ks pip run --project test -p simple
+          expect -d /scripts/pip.sh
           echo "Pipeline is Running Now !!"
           echo "**********************************************************************"
           kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE
@@ -95,7 +96,6 @@ jobs:
           PIPELINERUN=$(kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE | tail -n 1 | awk '{print $1}')
           echo $PIPELINERUN
           kubectl wait -n $NAMESPACE --for=jsonpath='{.status.phase}'=Succeeded pipelineruns/$PIPELINERUN --timeout=5m || kubectl get pipelineruns.devops.kubesphere.io -n $NAMESPACE
-          
           echo "WELL DONE"
 
 

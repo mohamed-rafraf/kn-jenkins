@@ -1,0 +1,16 @@
+apiVersion: devops.kubesphere.io/v1alpha3
+kind: PipelineRun
+metadata:
+  annotations:
+    devops.kubesphere.io/jenkins-pipelinerun-id: "2"
+  finalizers:
+  - pipelinerun.finalizers.kubesphere.io
+  generateName: simple
+  labels:
+    devops.kubesphere.io/pipeline: simple
+  name: simplecdwpd
+  namespace: testkhgqm
+  uid: 98a33070-e4d0-4b91-96f3-a2159dfc84e2
+spec:
+  pipelineRef:
+    name: simple
