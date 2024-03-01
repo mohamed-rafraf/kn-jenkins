@@ -80,6 +80,7 @@ jobs:
       - name: Create and Test a Pipeline 
         run: |
           echo "Creating a simple Pipeline"
+          sleep 180
           ks pip create --ws simple --project test --template simple --name simple
           echo "Pipeline is Created"
           echo "**********************************************************************"
