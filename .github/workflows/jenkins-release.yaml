@@ -46,4 +46,4 @@ jobs:
         run: |
           echo "Building Jenkins Version $IMAGE_TAG"
           SHA=$(git rev-parse --short HEAD)
-          make release-jenkins JENKINS_VERSION=$SHA IMAGE_NAME=$IMAGE_NAME
+          docker buildx build  --push -t $IMAGE_NAME:$SHA .
