@@ -33,7 +33,6 @@ jobs:
           platforms: all
 
       - name: Set short hash
-        id: vars
         run: |
           echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
@@ -46,4 +45,4 @@ jobs:
       - name: Build & Push image
         run: |
           echo "Building Jenkins Version $IMAGE_TAG"
-          make release-jenkins JENKINS_VERSION=${{ steps.vars.outputs.sha_short }} IMAGE_NAME=$IMAGE_NAME
+          make release-jenkins JENKINS_VERSION=$GITHUB_OUTPUT IMAGE_NAME=$IMAGE_NAME
