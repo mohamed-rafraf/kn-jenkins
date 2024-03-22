@@ -34,7 +34,7 @@ jobs:
 
       - name: Set short hash
         run: |
-          echo "sha_short=$(git rev-parse --short HEAD)"
+          echo ""
 
       - name: Set up Docker buildx
         uses: docker/setup-buildx-action@v1
@@ -45,4 +45,5 @@ jobs:
       - name: Build & Push image
         run: |
           echo "Building Jenkins Version $IMAGE_TAG"
-          make release-jenkins JENKINS_VERSION=${{ steps.vars.outputs.sha_short }} IMAGE_NAME=$IMAGE_NAME
+          SHA=$(git rev-parse --short HEAD)
+          make release-jenkins JENKINS_VERSION=$SHA IMAGE_NAME=$IMAGE_NAME
