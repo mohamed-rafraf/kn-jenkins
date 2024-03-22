@@ -1,166 +1,497 @@
 plugins:
   - artifactId: configuration-as-code
+    source:
+      version: 1775.v810dc950b_514
   - artifactId: ant
+    source:
+      version: 497.v94e7d9fffa_b_9
   - artifactId: azure-commons
+    source:
+      version: 1.1.3
   - artifactId: blueocean
+    source:
+      version: 1.27.11
   - artifactId: blueocean-config
+    source:
+      version: 1.27.11
   - artifactId: blueocean-dashboard
+    source:
+      version: 1.27.11
   - artifactId: blueocean-git-pipeline
+    source:
+      version: 1.27.11
   - artifactId: antisamy-markup-formatter
+    source:
+      version: 162.v0e6ec0fcfcf6
   - artifactId: blueocean-events
+    source:
+      version: 1.27.11
   - artifactId: blueocean-executor-info
+    source:
+      version: 1.27.11
   - artifactId: ace-editor
+    source:
+      version: 1.1
   - artifactId: blueocean-bitbucket-pipeline
+    source:
+      version: 1.27.11
   - artifactId: blueocean-github-pipeline
+    source:
+      version: 1.27.11
   - artifactId: blueocean-i18n
+    source:
+      version: 1.27.11
   - artifactId: blueocean-jira
+    source:
+      version: 1.27.11
   - artifactId: authentication-tokens
+    source:
+      version: 1.53.v1c90fd9191a_b_
   - artifactId: blueocean-commons
+    source:
+      version: 1.27.11
   - artifactId: blueocean-personalization
+    source:
+      version: 1.27.11
   - artifactId: async-http-client
+    source:
+      version: 1.9.40.0
   - artifactId: blueocean-autofavorite
+    source:
+      version: 1.2.5
   - artifactId: blueocean-core-js
+    source:
+      version: 1.27.11
   - artifactId: blueocean-jwt
+    source:
+      version: 1.27.11
   - artifactId: blueocean-pipeline-editor
+    source:
+      version: 1.27.11
   - artifactId: blueocean-pipeline-scm-api
+    source:
+      version: 1.27.11
   - artifactId: blueocean-rest-impl
+    source:
+      version: 1.27.11
   - artifactId: blueocean-web
+    source:
+      version: 1.27.11
   - artifactId: bootstrap5-api
+    source:
+      version: 5.3.2-3
   - artifactId: blueocean-display-url
+    source:
+      version: 2.4.2
   - artifactId: blueocean-pipeline-api-impl
+    source:
+      version: 1.27.11
   - artifactId: blueocean-rest
+    source:
+      version: 1.27.11
   - artifactId: bootstrap4-api
+    source:
+      version: 4.6.0-6
   - artifactId: caffeine-api
+    source:
+      version: 3.1.8-133.v17b_1ff2e0599
   - artifactId: jenkins-design-language
+    source:
+      version: 1.27.11
   - artifactId: jakarta-activation-api
+    source:
+      version: 2.0.1-3
   - artifactId: apache-httpcomponents-client-4-api
+    source:
+      version: 4.5.14-208.v438351942757
   - artifactId: bouncycastle-api
+    source:
+      version: 2.30.1.77-225.v26ea_c9455fd9
   - artifactId: checks-api
+    source:
+      version: 2.0.2
   - artifactId: conditional-buildstep
+    source:
+      version: 1.4.3
   - artifactId: display-url-api
+    source:
+      version: 2.200.vb_9327d658781
   - artifactId: font-awesome-api
+    source:
+      version: 6.5.1-2
   - artifactId: github
+    source:
+      version: 1.38.0
   - artifactId: jakarta-mail-api
+    source:
+      version: 2.0.1-3
   - artifactId: cloudbees-folder
+    source:
+      version: 6.858.v898218f3609d
   - artifactId: commons-text-api
+    source:
+      version: 1.11.0-95.v22a_d30ee5d36
   - artifactId: credentials
+    source:
+      version: 1319.v7eb_51b_3a_c97b_
   - artifactId: docker-commons
+    source:
+      version: 439.va_3cb_0a_6a_fb_29
   - artifactId: echarts-api
+    source:
+      version: 5.4.3-2
   - artifactId: gitlab-api
+    source:
+      version: 5.3.0-91.v1f9a_fda_d654f
   - artifactId: javax-mail-api
-  - artifactId: oic-auth
+    source:
+      version: 1.6.2-9
+  # - artifactId: oic-auth
+  #   source:
+  #     version: 2.6
   - artifactId: okhttp-api
-  - artifactId: pipeline-restful-api
+    source:
+      version: 4.11.0-172.vda_da_1feeb_c6e
+  # - artifactId: pipeline-restful-api
+  #   source:
+  #     version: 2.34
   - artifactId: popper2-api
+    source:
+      version: 2.11.6-4
   - artifactId: snakeyaml-api
+    source:
+      version: 2.2-111.vc6598e30cc65
   - artifactId: config-file-provider
+    source:
+      version: 968.ve1ca_eb_913f8c
   - artifactId: credentials-binding
+    source:
+      version: 657.v2b_19db_7d6e6d
   - artifactId: cvs
+    source:
+      version: 2.19.1
   - artifactId: email-ext
+    source:
+      version: 2.104
   - artifactId: git
+    source:
+      version: 5.2.1
   - artifactId: git-server
+    source:
+      version: 114.v068a_c7cc2574
   - artifactId: google-oauth-plugin
+    source:
+      version: 1.330.vf5e86021cb_ec
   - artifactId: ionicons-api
+    source:
+      version: 56.v1b_1c8c49374e
   - artifactId: javax-activation-api
+    source:
+      version: 1.2.0-6
   - artifactId: build-timeout
+    source:
+      version: 1.32
   - artifactId: kubernetes
+    source:
+      version: 4186.v1d804571d5d4
   - artifactId: branch-api
+    source:
+      version: 2.1148.vce12cfcdf090
   - artifactId: durable-task
+    source:
+      version: 550.v0930093c4b_a_6
   - artifactId: generic-event
+    source:
+      version: 41.v2b15d4dfb893
   - artifactId: cloudbees-disk-usage-simple
+    source:
+      version: 203.v3f46a_7462b_1a_
   - artifactId: command-launcher
+    source:
+      version: 107.v773860566e2e
   - artifactId: commons-lang3-api
+    source:
+      version: 3.13.0-62.v7d18e55f51e2
   - artifactId: external-monitor-job
+    source:
+      version: 215.v2e88e894db_f8
   - artifactId: generic-webhook-trigger
+    source:
+      version: 2.0.0
   - artifactId: git-client
+    source:
+      version: 4.6.0
   - artifactId: github-api
+    source:
+      version: 1.318-461.v7a_c09c9fa_d63
   - artifactId: htmlpublisher
+    source:
+      version: 1.32
   - artifactId: jaxb
+    source:
+      version: 2.3.9-1
   - artifactId: github-branch-source
+    source:
+      version: 1772.va_69eda_d018d4
   - artifactId: gitlab-branch-source
+    source:
+      version: 702.v7dde70ed1522
   - artifactId: javadoc
+    source:
+      version: 243.vb_b_503b_b_45537
   - artifactId: jdk-tool
+    source:
+      version: 73.vddf737284550
   - artifactId: jquery
+    source:
+      version: 1.12.4-1
   - artifactId: jquery3-api
+    source:
+      version: 3.7.1-1
   - artifactId: kubesphere-token-auth
+    source:
+      version: 1.7
   - artifactId: pipeline-stage-view
+    source:
+      version: 2.34
   - artifactId: plain-credentials
+    source:
+      version: 143.v1b_df8b_d3b_e48
   - artifactId: plugin-util-api
+    source:
+      version: 3.8.0
   - artifactId: popper-api
+    source:
+      version: 1.16.1-3
   - artifactId: jackson2-api
+    source:
+      version: 2.16.1-373.ve709c6871598
   - artifactId: jira
+    source:
+      version: 3.12
   - artifactId: job-dsl
+    source:
+      version: 1.87
   - artifactId: localization-support
+    source:
+      version: 1.2
   - artifactId: jsch
-  - artifactId: kubernetes-cd
+    source:
+      version: 0.2.16-86.v42e010d9484b_
+  # - artifactId: kubernetes-cd
+  #   source:
+  #     version: 2.3.1
   - artifactId: ldap
+    source:
+      version: 711.vb_d1a_491714dc
   - artifactId: lockable-resources
+    source:
+      version: 1243.v346d600eea_24
   - artifactId: maven-plugin
+    source:
+      version: 3.23
   - artifactId: cloudbees-bitbucket-branch-source
+    source:
+      version: 874.v659a_b_70f5e69
   - artifactId: docker-workflow
+    source:
+      version: 572.v950f58993843
   - artifactId: handy-uri-templates-2-api
+    source:
+      version: 2.1.8-30.v7e777411b_148
   - artifactId: junit
+    source:
+      version: 1259.v65ffcef24a_88
   - artifactId: handlebars
+    source:
+      version: 3.0.8
   - artifactId: jquery-detached
+    source:
+      version: 1.2.1
   - artifactId: kubernetes-client-api
+    source:
+      version: 6.10.0-240.v57880ce8b_0b_2
   - artifactId: label-linked-jobs
+    source:
+      version: 6.0.1
   - artifactId: localization-zh-cn
+    source:
+      version: 371.v23851f835d6b_
   - artifactId: mailer
+    source:
+      version: 463.vedf8358e006b_
   - artifactId: mapdb-api
+    source:
+      version: 1.0.9-28.vf251ce40855d
   - artifactId: matrix-project
+    source:
+      version: 822.824.v14451b_c0fd42
   - artifactId: managed-scripts
+    source:
+      version: 1.5.6
   - artifactId: matrix-auth
+    source:
+      version: 3.2.1
   - artifactId: mercurial
+    source:
+      version: 1260.vdfb_723cdcc81
   - artifactId: metrics
+    source:
+      version: 4.2.21-449.v6960d7c54c69
   - artifactId: kubernetes-credentials
+    source:
+      version: 0.11
   - artifactId: multibranch-action-triggers
+    source:
+      version: 1.8.6
   - artifactId: oauth-credentials
+    source:
+      version: 0.646.v02b_66dc03d2e
   - artifactId: pipeline-graph-analysis
+    source:
+      version: 202.va_d268e64deb_3
   - artifactId: pipeline-input-step
+    source:
+      version: 477.v339683a_8d55e
   - artifactId: sshd
+    source:
+      version: 3.322.v159e91f6a_550
   - artifactId: node-iterator-api
+    source:
+      version: 55.v3b_77d4032326
   - artifactId: parameterized-trigger
+    source:
+      version: 787.v665fcf2a_830b_
   - artifactId: pipeline-milestone-step
+    source:
+      version: 111.v449306f708b_7
   - artifactId: resource-disposer
+    source:
+      version: 0.23
   - artifactId: momentjs
+    source:
+      version: 1.1.1
   - artifactId: pam-auth
+    source:
+      version: 1.10
   - artifactId: pipeline-build-step
+    source:
+      version: 540.vb_e8849e1a_b_d8
   - artifactId: pipeline-stage-step
+    source:
+      version: 305.ve96d0205c1c6
   - artifactId: pubsub-light
+    source:
+      version: 1.18
   - artifactId: role-strategy
+    source:
+      version: 689.v731678c3e0eb_
   - artifactId: run-condition
+    source:
+      version: 1.7
   - artifactId: script-security
+    source:
+      version: 1326.vdb_c154de8669
   - artifactId: skip-notifications-trait
+    source:
+      version: 313.vd1337c8f8134
   - artifactId: sse-gateway
+    source:
+      version: 1.26
+  
   - artifactId: pipeline-stage-tags-metadata
+    source:
+      version: 2.2175.v76a_fff0a_2618  
   - artifactId: prometheus
+    source:
+      version: 2.5.1 
   - artifactId: sonar
+    source:
+      version: 2.17.2 
   - artifactId: ssh-credentials
+    source:
+      version: 308.ve4497b_ccd8f4 
   - artifactId: ssh-slaves
+    source:
+      version: 2.948.vb_8050d697fec  
   - artifactId: structs
+    source:
+      version: 337.v1b_04ea_4df7c8
   - artifactId: subversion
+    source:
+      version: 2.17.3
   - artifactId: trilead-api
+    source:
+      version: 2.133.vfb_8a_7b_9c5dd1
   - artifactId: pipeline-model-api
+    source:
+      version: 2.2175.v76a_fff0a_2618  
   - artifactId: pipeline-model-extensions
+    source:
+      version: 2.2175.v76a_fff0a_2618
   - artifactId: support-core
+    source:
+      version: 1375.va_256158e8881  
   - artifactId: pipeline-rest-api
+    source:
+      version: 2.34
   - artifactId: scm-api
+    source:
+      version: 683.vb_16722fb_b_80b_ 
   - artifactId: token-macro
+    source:
+      version: 400.v35420b_922dcb_  
   - artifactId: variant
+    source:
+      version: 60.v7290fc0eb_b_cd 
   - artifactId: windows-slaves
+    source:
+      version: 1.8.1 
   - artifactId: workflow-aggregator
+    source:
+      version: 596.v8c21c963d92d 
   - artifactId: workflow-api
+    source:
+      version: 1291.v51fd2a_625da_7
   - artifactId: workflow-cps
+    source:
+      version: 3837.v305192405b_c0 
   - artifactId: workflow-cps-global-lib
+    source:
+      version: 612.v55f2f80781ef
   - artifactId: workflow-durable-task-step
+    source:
+      version: 1331.vc8c2fed35334
   - artifactId: ws-cleanup
+    source:
+      version:  0.45
   - artifactId: workflow-basic-steps
+    source:
+      version: 1042.ve7b_140c4a_e0c  
   - artifactId: workflow-job
+    source:
+      version: 1385.vb_58b_86ea_fff1 
   - artifactId: workflow-multibranch
+    source:
+      version: 773.vc4fe1378f1d5 
   - artifactId: workflow-scm-step
+    source:
+      version: 415.v434365564324  
   - artifactId: workflow-step-api
+    source:
+      version: 657.v03b_e8115821b_  
   - artifactId: workflow-support
+    source:
+      version: 865.v43e78cc44e0d  
   - artifactId: pipeline-model-definition
+    source:
+      version: 2.2175.v76a_fff0a_2618 
   - artifactId: extended-read-permission
+    source:
+      version: 53.v6499940139e5 
   - artifactId: favorite
-  - artifactId: build-user-vars-plugin
+    source:
+      version: 2.4.3
+  - artifactId: build-user-vars-plugin    
+    source:
+      version: 1.9
