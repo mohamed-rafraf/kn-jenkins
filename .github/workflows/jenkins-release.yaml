@@ -34,7 +34,8 @@ jobs:
 
       - name: Set short hash
         id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Set up Docker buildx
         uses: docker/setup-buildx-action@v1
