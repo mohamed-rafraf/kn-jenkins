@@ -459,7 +459,7 @@ rbac:
 casc:
   devopsJenkinsConfigAnnotations: {}
   securityRealm:
-    type: local # support values include local, ldap
+    type: ldap # support values include local, ldap
     ldap:
       host: openldap.kubesphere-system.svc:389
 
