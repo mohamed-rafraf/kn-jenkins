@@ -13,4 +13,4 @@ name: kn-jenkins
 sources:
 - https://github.com/jenkinsci/jenkins
 - https://github.com/jenkinsci/docker-agent/
-version: 0.0.1
+version: 0.0.2
